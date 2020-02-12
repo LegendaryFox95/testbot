@@ -55,14 +55,15 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content.endsWith('!blink')) {
-    msg.channel.send(`<a:mfwgirldoesntsuckmypeesos:676056848092233774>`);
+    msg.channel.send(`<a:mfwgirldoesntsuckmypeesos:>`);
   }
 });
 
 client.on('message', msg => {
   if (msg.content.endsWith('!wink')) {
-    if (!client.emojis) {
-      msg.channel.send(`${client.emojis.first(54)[53]}`);
+      var mserv = client.guilds.find(gu => gu.id === `573103176321073172`);
+      var emo = mserv.emojis.fing(em => em.id === `676400658382848011`);
+      msg.channel.send(`${emo}`);
   }
   }
 });
