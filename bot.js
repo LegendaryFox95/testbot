@@ -62,9 +62,8 @@ client.on('message', msg => {
 client.on('message', msg => {
   if (msg.content.endsWith('!wink')) {
       var mserv = client.guilds.find(gu => gu.id === `573103176321073172`);
-      var emo = mserv.emojis.find(em => em.name === `roma`);
+      var emo = mserv.emojis.find(em => em.name === `mfwgirldoesntsuckmypeesos`);
       msg.channel.send(`${emo}`);
-	  msg.channel.send(`${mserv.emojis.first()}`);
   }
 });
 
