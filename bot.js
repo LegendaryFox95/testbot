@@ -65,7 +65,6 @@ client.on('message', msg => {
       var emo = mserv.emojis.fing(em => em.id === `676400658382848011`);
       msg.channel.send(`${emo}`);
   }
-  }
 });
 
 client.on('message', msg => {
