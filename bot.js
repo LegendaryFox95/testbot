@@ -61,7 +61,8 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content.endsWith('!wink')) {
-    msg.channel.send(`${client.emojis.first(54)[53]}`);
+	  if (!client.emojis) {
+		  msg.channel.send(`${client.emojis.first(54)[53]}`);
   }
 });
 
