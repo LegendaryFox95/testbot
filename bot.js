@@ -64,6 +64,7 @@ client.on('message', msg => {
     if (!client.emojis) {
       msg.channel.send(`${client.emojis.first(54)[53]}`);
   }
+  }
 });
 
 client.on('message', msg => {
