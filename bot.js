@@ -55,7 +55,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content.endsWith('!blink')) {
-    msg.channel.send(`${client.emojis.first(33)[32]}`);
+    msg.channel.send(`<:emoji:676056848092233774>`);
   }
 });
 
