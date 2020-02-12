@@ -55,7 +55,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content.endsWith('!blink')) {
-    msg.channel.send(`<:mfwgirldoesntsuckmypeesos:676056848092233774>`);
+    msg.channel.send(`<a:mfwgirldoesntsuckmypeesos:676056848092233774>`);
   }
 });
 
