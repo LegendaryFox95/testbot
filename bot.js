@@ -61,7 +61,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content.endsWith('да')) {
-	if (msg.author.tag != "Roma#4807") {
+	if (msg.author.tag != "Девушка Фокса#4807") {
 		msg.channel.send(`пизда`);
 	}
   }
@@ -90,7 +90,7 @@ client.on('message', msg => {
 				}
 			}
 			if (idmentions != 1) {
-				if (msg.author.tag != "Roma#4807") {
+				if (msg.author.tag != "Девушка Фокса#4807") {
 				    if (channeles) {
 					    channeles.send(`Anon:${msg.content.slice(6+args[0].length)}`).then(() => {
 							console.log(`${msg.author.tag}, ${msg.content}`);
