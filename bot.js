@@ -18,6 +18,18 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
+	if (msg.content === `!pog`) {
+		msg.channel.send(`<a:ummmok:613456031808225300>`);
+	}
+});
+
+client.on('message', msg => {
+	if (msg.content === `!sans`) {
+		msg.channel.send(`<a:pogchampsans:611583559274201098>`);
+	}
+});
+
+client.on('message', msg => {
   if (msg.content === '!roll') {
     msg.reply(Math.floor(Math.random() * 1000));
   }
