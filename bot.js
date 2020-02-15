@@ -7,7 +7,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	if (msg.content === `!emojifill`) {
-		msg.reply(`${client.emojis.find(`name`, `pisosya`)}`);
+		msg.reply(`${client.emojis.find(`name`, `antitrolling`)}`);
 	}
 });
 
