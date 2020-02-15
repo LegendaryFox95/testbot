@@ -6,14 +6,14 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	if (msg.content === `!wink`) {
-		msg.channel.send(`<a:pisosya:675805476549558343>`);
+	if (msg.content === `!blink`) {
+		msg.channel.send(`<a:mfwgirldoesntsuckmypeesos:591234476953174037>`);
 	}
 });
 
 client.on('message', msg => {
-	if (msg.content === `!pog`) {
-		msg.channel.send(`<a:ummmok:678202935246716943>`);
+	if (msg.content === `!wink`) {
+		msg.channel.send(`<a:pisosya:675805476549558343>`);
 	}
 });
 
