@@ -6,8 +6,26 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	if (msg.content === `!init`) {
+	if (msg.content === `!wink`) {
 		msg.channel.send(`<a:pisosya:675805476549558343>`);
+	}
+});
+
+client.on('message', msg => {
+	if (msg.content === `!pog`) {
+		msg.channel.send(`<a:ummmok:678202935246716943>`);
+	}
+});
+
+client.on('message', msg => {
+	if (msg.content === `!blink`) {
+		msg.channel.send(`<a:mfwgirldoesntsuckmypeesos:676400517139791895>`);
+	}
+});
+
+client.on('message', msg => {
+	if (msg.content === `!sans`) {
+		msg.channel.send(`<a:pogchampsans:678203164889186325>`);
 	}
 });
 
