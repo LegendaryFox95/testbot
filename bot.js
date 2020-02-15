@@ -66,25 +66,10 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-  if (msg.content.endsWith('!blink')) {
-    msg.channel.send(`<a:mfwgirldoesntsuckmypeesos:676056848092233774>`);
-  }
-});
-
-client.on('message', msg => {
   if (msg.content.endsWith('да')) {
 	if (msg.author.tag != "Девушка Фокса#4807") {
 		msg.channel.send(`пизда`);
 	}
-  }
-});
-
-
-client.on('message', msg => {
-  if (msg.content.endsWith('!wink')) {
-      var mserv = client.guilds.find(gu => gu.id === `573103176321073172`);
-      var emo = mserv.emojis.find(em => em.animated === `true`);
-      msg.channel.send(`${emo[0]}`);
   }
 });
 
