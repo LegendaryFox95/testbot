@@ -8,6 +8,7 @@ client.on('ready', () => {
 client.on('message', msg => {
   if (msg.content === '!roll') {
     msg.reply(Math.floor(Math.random() * 1000));
+    msg.reply(`${client.emojis.array.length}`);
   }
 });
 
