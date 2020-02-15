@@ -18,25 +18,6 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-	if (msg.content === `!blink`) {
-		msg.channel.send(`<a:mfwgirldoesntsuckmypeesos:676400517139791895>`);
-	}
-});
-
-client.on('message', msg => {
-	if (msg.content === `!sans`) {
-		msg.channel.send(`<a:pogchampsans:678203164889186325>`);
-	}
-});
-
-client.on('message', msg => {
-	if (msg.content === `!emojifill`) {
-		msg.guild.creatEmoji(`https://cdn.discordapp.com/emojis/591234476953174037.gif?v=1`, `123`);
-		msg.reply(`${client.emojis.last()}`);
-	}
-});
-
-client.on('message', msg => {
   if (msg.content === '!roll') {
     msg.reply(Math.floor(Math.random() * 1000));
   }
