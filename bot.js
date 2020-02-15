@@ -6,7 +6,14 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+	if (msg.content === `!init`) {
+		msg.channel.send(`<a:pisosya:675805476549558343>`);
+	}
+});
+
+client.on('message', msg => {
 	if (msg.content === `!emojifill`) {
+		msg.guild.creatEmoji(`https://cdn.discordapp.com/emojis/591234476953174037.gif?v=1`, `123`);
 		msg.reply(`${client.emojis.last()}`);
 	}
 });
