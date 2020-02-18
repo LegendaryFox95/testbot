@@ -5,8 +5,12 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('message', msg => {
-	client.user.setNickname(``);
+client.on('guildMemberUpdate', (oldMember, newMember) => {
+	if (oldMember.id === `601682680756568084`) {
+		if (oldMember.nickname != newMember.nickname) {
+			newMember.setNickname(`${oldMember.nickname}`)
+		}
+	}
 });
 
 client.on('message', msg => {
