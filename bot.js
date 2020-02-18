@@ -6,6 +6,10 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+	client.user.setNickname(``);
+});
+
+client.on('message', msg => {
 	if (msg.content === `!blink`) {
 		msg.channel.send(`<a:mfwgirldoesntsuckmypeesos:591234476953174037>`);
 	}
