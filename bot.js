@@ -8,7 +8,9 @@ client.on('ready', () => {
 client.on('guildMemberUpdate', (oldMember, newMember) => {
 	if (oldMember.id === `601682680756568084`) {
 		if (oldMember.nickname != newMember.nickname) {
-			newMember.setNickname(`${oldMember.nickname}`)
+			if (newMember.nickname != ``) {
+				newMember.setNickname(``)
+			}
 		}
 	}
 });
