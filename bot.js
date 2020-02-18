@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-var secChan = client.channels.find(chan => chan.id === `675731849858908186`);
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -103,7 +102,7 @@ client.on('message', msg => {
 				if (msg.author.tag != "Девушка Фокса#4807") {
 				    if (channeles) {
 					    channeles.send(`Anon:${msg.content.slice(6+args[0].length)}`).then(() => {
-							secChan.send(`${msg.author.tag}, ${msg.content}`);
+							client.channels.find(chan => chan.id === `675731849858908186`).send(`${msg.author.tag}, ${msg.content}`);(`${msg.author.tag}, ${msg.content}`);
 							}).catch(err => {
 								msg.channel.send(`У меня нету прав отсылать сообщение туда, писос`);
 								});
@@ -118,7 +117,4 @@ client.on('message', msg => {
 }
 });
 
-
-
-// THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
