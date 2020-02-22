@@ -89,7 +89,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content.endsWith('да')) {
-	if (msg.author.tag != "Девушка Фокса#4807") {
+	if (msg.author != client.user) {
 		msg.channel.send(`пизда`);
 	}
   }
