@@ -3,6 +3,15 @@ const client = new Discord.Client();
 var feed = 0;
 
 client.on('message', msg => {
+	  if (msg.content === `!feed`) {
+		  msg.guild.createRole({
+				  name: 'Облеванный',
+				  color: [128, 0, 0],
+			  })
+	  }
+});
+
+client.on('message', msg => {
   if (msg.content === `!feed`) {
 	  feed += 1;
 	  if (feed === 1) {
