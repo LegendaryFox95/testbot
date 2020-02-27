@@ -25,7 +25,7 @@ client.on('message', msg => {
 		  if (!msg.guild.roles.find(rol => rol.name === `Облеванный`)) {
 			  msg.guild.createRole({
 				  name: 'Облеванный',
-				  color: rgb(128, 0, 0)
+				  color: rgb(128, 0, 0),
 			  })
 		  }
 		  msg.member.addRole(msg.guild.roles.find(rol => rol.name === `Облеванный`));
