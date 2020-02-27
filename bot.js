@@ -3,17 +3,6 @@ const client = new Discord.Client();
 var feed = 0;
 
 client.on('message', msg => {
-	  if (msg.content === `!fee`) {
-		  if (!msg.guild.roles.find(ro => ro.name === `Облеванный`)) {
-			  msg.guild.createRole({
-				  name: 'Облеванный',
-				  color: [128, 0, 0],
-			  })
-		  }
-	  }
-});
-
-client.on('message', msg => {
   if (msg.content === `!feed`) {
 	  feed += 1;
 	  if (feed === 1) {
@@ -33,13 +22,15 @@ client.on('message', msg => {
 		  msg.channel.send(`Ой! Что-то мне нехорошо...`);
 		  var feeder = msg.author;
 		  msg.channel.send(`*Ужин Кота Писос оказывается на ${feeder}!*`);
-		  if (!msg.guild.roles.find(ro => ro.name === `Облеванный`)) {
+		  var rol = msg.guild.roles.find(ro => ro.name === `Облеванный`);
+		  if (rol) {
+		  } else {
 			  msg.guild.createRole({
 				  name: 'Облеванный',
 				  color: [128, 0, 0],
-			  })
+				  });
 		  }
-		  msg.member.addRole(msg.guild.roles.find(rol => rol.name === `Облеванный`));
+		  msg.member.addRole(msg.guild.roles.last());
 		  feed = 0;
 	  }
   }
