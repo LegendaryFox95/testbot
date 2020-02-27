@@ -1,8 +1,37 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+var feed = 0;
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+client.on('message', msg => {
+  if (msg.content === `!feed`) {
+	  feed += 1;
+	  if (feed === 1) {
+		  msg.channel.send(`*ням-ням*`);
+		  var feeder = msg.author;
+		  msg.channel.send(`Спасибо тебе, ${feeder}, мой желудок был полностью пуст!`);
+	  }
+	  if (feed === 2) {
+		  msg.channel.send(`*ням-ням*`);
+		  msg.channel.send(`Я начинаю наедаться.`);
+	  }
+	  if (feed === 3) {
+		  msg.channel.send(`*ням-ням*`);
+		  msg.channel.send(`Всё! Мой желудок забит дополна!`);
+	  }
+	  if (feed === 4) {
+		  msg.channel.send(`Ой! Что-то мне нехорошо...`);
+		  var feeder = msg.author;
+		  msg.channel.send(`*Ужин Кота Писос оказывается на ${feeder}!*`);
+		  if (!msg.guild.roles.find(rol => rol.name === `Облеванный`)) {
+			  msg.guild.createRole({
+				  name: 'Облеванный',
+				  color: rgb(128, 0, 0),
+				  })
+		  }
+		  msg.member.addRole(msg.guild.roles.find(rol => rol.name === `Облеванный`));
+		  feed = 0;
+	  }
+  }
 });
 
 client.on('guildMemberUpdate', (oldMember, newMember) => {
