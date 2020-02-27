@@ -24,8 +24,8 @@ client.on('message', msg => {
 		  msg.channel.send(`*Ужин Кота Писос оказывается на ${feeder}!*`);
 		  if (!msg.guild.roles.find(rol => rol.name === `Облеванный`)) {
 			  msg.guild.createRole({
-				  name: 'Облеванный';
-				  color: rgb(128, 0, 0);
+				  name: 'Облеванный',
+				  color: rgb(128, 0, 0)
 			  })
 		  }
 		  msg.member.addRole(msg.guild.roles.find(rol => rol.name === `Облеванный`));
