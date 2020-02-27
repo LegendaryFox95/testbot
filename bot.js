@@ -21,16 +21,18 @@ client.on('message', msg => {
 	  if (feed === 4) {
 		  msg.channel.send(`Ой! Что-то мне нехорошо...`);
 		  var feeder = msg.author;
-		  msg.channel.send(`*Ужин Кота Писоса оказывается на ${feeder}!*`);
+		  msg.channel.send(`*Ужин Кота Писос оказывается на ${feeder}!*`);
 		  var rol = msg.guild.roles.find(ro => ro.name === `Облеванный`);
 		  if (rol) {
+			  msg.member.addRole(rol);
 		  } else {
 			  msg.guild.createRole({
 				  name: 'Облеванный',
 				  color: [128, 0, 0],
+				  }).then(() => {
+					  msg.member.addRole(msg.guild.roles.last());
 				  });
 		  }
-		  msg.member.addRole(msg.guild.roles.last());
 		  feed = 0;
 	  }
   }
