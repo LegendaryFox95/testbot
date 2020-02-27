@@ -21,7 +21,7 @@ client.on('message', msg => {
 	  if (feed === 4) {
 		  msg.channel.send(`Ой! Что-то мне нехорошо...`);
 		  var feeder = msg.author;
-		  msg.channel.send(`*Ужин Кота Писос оказывается на ${feeder}!*`);
+		  msg.channel.send(`*Ужин Кота Писоса оказывается на ${feeder}!*`);
 		  var rol = msg.guild.roles.find(ro => ro.name === `Облеванный`);
 		  if (rol) {
 		  } else {
