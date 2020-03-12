@@ -1,24 +1,42 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var feed = 0;
+var hunTime;
+
+function hunger() {
+	if (feed > 0){
+		feed -= 1;
+		if (feed > 0) {
+			clearTimeout(hunTime);
+			hunTime = setTimeout(hunger, 1200000);
+		}
+	}
+}
 
 client.on('message', msg => {
   if (msg.content === `!feed`) {
 	  feed += 1;
 	  if (feed === 1) {
+		  clearTimeout(hunTime);
+		  hunTime = setTimeout(hunger, 1200000);
 		  msg.channel.send(`*ням-ням*`);
 		  var feeder = msg.author;
 		  msg.channel.send(`Спасибо тебе, ${feeder}, мой желудок был полностью пуст!`);
 	  }
 	  if (feed === 2) {
+		  clearTimeout(hunTime);
+		  hunTime = setTimeout(hunger, 1200000);
 		  msg.channel.send(`*ням-ням*`);
 		  msg.channel.send(`Я начинаю наедаться.`);
 	  }
 	  if (feed === 3) {
+		  clearTimeout(hunTime);
+		  hunTime = setTimeout(hunger, 1200000);
 		  msg.channel.send(`*ням-ням*`);
 		  msg.channel.send(`Всё! Мой желудок забит дополна!`);
 	  }
 	  if (feed === 4) {
+		  clearTimeout(hunTime);
 		  msg.channel.send(`Ой! Что-то мне нехорошо...`);
 		  var feeder = msg.author;
 		  msg.channel.send(`*Ужин Кота Писос оказывается на ${feeder}!*`);
@@ -35,6 +53,12 @@ client.on('message', msg => {
 		  }
 		  feed = 0;
 	  }
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === `!patch`) {
+	  msg.channel.send(`Последний патчноут:\n-Добавлена команда !patch которая позволяет посмотреть последний патчноут.\n-Теперь писос голодает каждые двадцать минут (на одну степень сытости).`)
   }
 });
 
