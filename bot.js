@@ -30,6 +30,7 @@ client.on('message', msg => {
 		if (msg.author.pcoins >= 1000) {
 			msg.author.pcoins -= 1000;
 			msg.member.removeRole('682691060748910663');
+			msg.channel.send(`${msg.author} помылся и теперь приятно пахнет, мур.`);
 			getdb();
 		}
 	}
