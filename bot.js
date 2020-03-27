@@ -62,6 +62,7 @@ client.on('message', msg => {
 client.on('message', msg => {
 	if (msg.content.startsWith(`!gamble `)) {
 		var args = msg.content.slice(8).split(` `);
+		if (args[0] > 0) {
 		if (msg.author.pcoins >= args[0]) {
 			var ran = Math.floor(Math.random() * 2);
 			if (ran === 1) {
@@ -73,6 +74,7 @@ client.on('message', msg => {
 				msg.reply(`Соси писос.`);
 				getdb();
 			}
+		}
 		}
 	}
 });
