@@ -132,7 +132,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content === `!feed`) {
-	  if (msg.channel.type === text) {
+	  if (msg.channel.type === `text`) {
 	  if (!msg.member.roles.find(ro => ro.id === `682691060748910663`)) {
 	  feed += 1;
 	  if (feed === 1) {
