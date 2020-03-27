@@ -38,13 +38,13 @@ client.on('message', msg => {
 client.on('message', msg => {
 	if (msg.content.startsWith(`!vomit`)) {
 		var args = msg.content.slice(7).split(` `);
-		var anuser = client.users.find(us => us.tag === `${args[0]}`);
+		var anuser = msg.guild.members.find(us => us.id === `${args[0]}`);
 		if (anuser) {
 		} else {
-			var anuser = client.users.find(us => us.id === `${args[0]}`);
+			var anuser = msg.guild.members.find(us => us.id === `${args[0]}`);
 			if (anuser) {
 			} else {
-				var anuser = msg.author;
+				var anuser = msg.member;
 			}
 		}
 		if (msg.author.pcoins >= 3000) {
