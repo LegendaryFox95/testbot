@@ -36,7 +36,7 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-	if (msg.content === `!vomit`) {
+	if (msg.content.startsWith(`!vomit`)) {
 		var args = msg.content.slice(7).split(` `);
 		var anuser = client.users.find(us => us.tag === `${args[0]}`);
 		if (anuser) {
