@@ -83,8 +83,8 @@ client.on('message', msg => {
 	if (msg.channel.id === `693090256832036886`) {
 		var args = msg.content.replace(/\n/gi, ` `).split(` `);
 		for (var i = 0; i < args.length; i += 3) {
-			client.users.find(us => us.id === `${args[i]}`).pcoins = args[i+1];
-			client.users.find(us => us.id === `${args[i]}`).lastdaily = args[i+2];
+			client.users.find(us => us.id === `${args[i]}`).pcoins = parseInt(args[i+1]);
+			client.users.find(us => us.id === `${args[i]}`).lastdaily = parseInt(args[i+2]);
 		}
 	}
 });
