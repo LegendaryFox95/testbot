@@ -15,6 +15,7 @@ function hunger() {
 
 function getdb() {
 	var na = client.users.array().filter(us => us.pcoins != undefined);
+	client.channels.find(ch => ch.id === `693067909014224910`).send(`s`);
 	for (let i = 0; i < na.length; i++) {
 	client.channels.find(ch => ch.id === `693067909014224910`).send(`${na[i].id} ${na[i].pcoins} ${na[i].lastdaily}`);
 	}
