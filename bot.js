@@ -1,28 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('database', 'user', 'password', {
-	host: 'localhost',
-	dialect: 'sqlite',
-	logging: false,
-	storage: 'database.sqlite',
-});
-const PCoins = sequelize.define('pcoins', {
-	user_id: {
-		type: Sequelize.STRING,
-		unique: true,
-	},
-	amount: {
-		type: Sequelize.INTEGER,
-		defaultValue: 0,
-		allowNull: false,
-	},
-	lastdaily: {
-		type: Sequelize.INTEGER,
-		defaultValue: 0	,
-	},
-});
-
 var feed = 0;
 var hunTime;
 
@@ -38,63 +15,6 @@ function hunger() {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  PCoins.sync();
-});
-
-client.on('message', async msg => {
-	if (msg.content.startsWith(`!balance`)) {
-		var args = msg.content.slice(9).split(` `);
-		var anuser = client.users.find(us => us.tag === `${args[0]}`);
-		if (anuser) {
-			var uid = anuser.id;
-		} else {
-			var anuser = client.users.find(us => us.id === `${args[0]}`);
-			if (anuser) {
-				var uid = anuser.id;
-			} else {
-				var anuser = msg.author;
-				var uid = msg.author.id;
-			}
-		} 
-		var dbu = await PCoins.findOne({ where: { user_id: uid } });
-		if (!dbu) {
-			var dbu = await PCoins.create({
-				user_id: uid,
-				amount: 0,
-				lastdaily: 0,
-			});
-			return msg.channel.send(`Баланс пользователя ${anuser} составляет ${dbu.amount} писос коинов`);
-		}
-		return msg.channel.send(`Баланс пользователя ${anuser} составляет ${dbu.amount} писос коинов`);
-	}
-});
-
-client.on('message', async msg => {
-	if (msg.content === `!daily`) {
-		var datra = new Date;
-		var daydaily = datra.getDate();
-		var dbu = await PCoins.findOne({ where: { user_id: msg.author.id } });
-		if (!dbu) {
-			var dbu = await PCoins.create({
-				user_id: msg.author.id,
-				amount: 100,
-				lastdaily: daydaily,
-			});
-			return msg.reply(`вы получили ваши ежедневные писос коины и теперь ваш баланс составляет 100.`);
-		} else if (dbu.lastdaily == daydaily) {
-			var h = 23 - datra.getHours();
-			var m = 59 - datra.getMinutes();
-			var s = 59 - datra.getSeconds();
-			return msg.reply(`вы уже получали ваши ежедневные писос коины сегодня. Приходите через ${h} часов, ${m} минут, ${s} секунд.`);
-		} else {
-			var uid = msg.author.id;
-			var newamo = dbu.amount + 100;
-			dbu.amount = newamo;
-			dbu.lastdaily = daydaily;
-			await dbu.save();
-			return msg.reply(`вы получили ваши ежедневные писос коины и теперь ваш баланс составляет ${newamo}.`);
-		}
-	}
 });
 
 client.on('message', msg => {
