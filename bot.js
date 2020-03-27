@@ -122,7 +122,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content === `!patch`) {
-	  msg.channel.send(`Последний патчноут:\n-Добавлены писос коины.\n Новые команды !balance и !daily.`)
+	  msg.channel.send(`Последний патчноут:\n-Добавлены писос коины.\n-Новые команды !balance и !daily.`)
   }
 });
 
