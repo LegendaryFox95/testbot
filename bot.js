@@ -52,7 +52,7 @@ client.on('message', msg => {
 			clearTimeout(hunTime);
 			msg.channel.send(`Ой! Что-то мне нехорошо...`);
 			msg.channel.send(`*Ужин Кота Писос оказывается на ${anuser}!*`);
-			msg.member.addRole('682691060748910663');
+			anuser.addRole('682691060748910663');
 			feed = 0;
 			getdb();
 		}
