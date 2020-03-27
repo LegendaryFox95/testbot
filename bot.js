@@ -13,8 +13,68 @@ function hunger() {
 	}
 }
 
+function getdb() {
+	var na = client.users.array().filter(us => us.pcoins != undefined);
+	for (let i = 0; i < na.length; i++) {
+	client.channels.find(ch => ch.id === `693067909014224910`).send(`${na[i].id} ${na[i].pcoins} ${na[i].lastdaily}`);
+	}
+}
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.on('message', msg => {
+	if (msg.channel.id === `693090256832036886`) {
+		var args = msg.content.replace(/\n/gi, ` `).split(` `);
+		for (var i = 0; i < args.length; i += 3) {
+			client.users.find(us => us.id === `${args[i]}`).pcoins = args[i+1];
+			client.users.find(us => us.id === `${args[i]}`).lastdaily = args[i+2];
+		}
+	}
+});
+
+client.on('message', msg => {
+	if (msg.content.startsWith(`!balance`)) {
+		var args = msg.content.slice(9).split(` `);
+		var anuser = client.users.find(us => us.tag === `${args[0]}`);
+		if (anuser) {
+		} else {
+			var anuser = client.users.find(us => us.id === `${args[0]}`);
+			if (anuser) {
+			} else {
+				var anuser = msg.author;
+			}
+		}
+		if (anuser.pcoins === undefined) {
+			msg.channel.send(`Баланс пользователя ${anuser} составляет 0 писос коинов`);
+		} else msg.channel.send(`Баланс пользователя ${anuser} составляет ${anuser.pcoins} писос коинов`);
+	}
+});
+
+client.on('message', msg => {
+	if (msg.content === `!daily`) {
+		var datra = new Date;
+		var daydaily = datra.getDate();
+		if (msg.author.pcoins === undefined) {
+			msg.author.pcoins = 100;
+			msg.author.lastdaily = daydaily;
+			msg.reply(`вы получили ваши ежедневные писос коины и теперь ваш баланс составляет ${msg.author.pcoins}.`);
+			getdb();
+		} else {
+			if (msg.author.lastdaily != daydaily) {
+				msg.author.pcoins += 100;
+				msg.author.lastdaily = daydaily;
+				msg.reply(`вы получили ваши ежедневные писос коины и теперь ваш баланс составляет ${msg.author.pcoins}.`);
+				getdb();
+			} else {
+				var h = 23 - datra.getHours();
+				var m = 59 - datra.getMinutes();
+				var s = 59 - datra.getSeconds();
+				msg.reply(`вы уже получили ваши ежедневные писос коины сегодня. Приходите через ${h} часов, ${m} минут, ${s} секунд или пососите писос.`);
+			}
+		}
+	}
 });
 
 client.on('message', msg => {
