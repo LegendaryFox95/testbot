@@ -25,6 +25,58 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+	if (msg.content === `!wash`) {
+		if (msg.author.pcoins >= 1000) {
+			msg.author.pcoins -= 1000;
+			msg.member.removeRole('682691060748910663');
+			getdb();
+		}
+	}
+});
+
+client.on('message', msg => {
+	if (msg.content === `!vomit`) {
+		var args = msg.content.slice(7).split(` `);
+		var anuser = client.users.find(us => us.tag === `${args[0]}`);
+		if (anuser) {
+		} else {
+			var anuser = client.users.find(us => us.id === `${args[0]}`);
+			if (anuser) {
+			} else {
+				var anuser = msg.author;
+			}
+		}
+		if (msg.author.pcoins >= 3000) {
+			msg.author.pcoins -= 3000;
+			clearTimeout(hunTime);
+			msg.channel.send(`Ой! Что-то мне нехорошо...`);
+			msg.channel.send(`*Ужин Кота Писос оказывается на ${anuser}!*`);
+			msg.member.addRole('682691060748910663');
+			feed = 0;
+			getdb();
+		}
+	}
+});
+
+client.on('message', msg => {
+	if (msg.content.startsWith(`!gamble `)) {
+		var args = msg.content.slice(8).split(` `);
+		if (msg.author.pcoins >= args[0]) {
+			var ran = Math.floor(Math.random() * 2);
+			if (ran === 1) {
+				msg.author.pcoins += parseInt(args[0]);
+				msg.reply(`Ого, поздравляю ты выиграл!`);
+				getdb();
+			} else {
+				msg.author.pcoins -= parseInt(args[0]);
+				msg.reply(`Соси писос.`);
+				getdb();
+			}
+		}
+	}
+});
+
+client.on('message', msg => {
 	if (msg.channel.id === `693090256832036886`) {
 		var args = msg.content.replace(/\n/gi, ` `).split(` `);
 		for (var i = 0; i < args.length; i += 3) {
@@ -79,11 +131,19 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content === `!feed`) {
+	  if (msg.channel.type === text) {
+	  if (!msg.member.roles.find(ro => ro.id === `682691060748910663`)) {
 	  feed += 1;
 	  if (feed === 1) {
 		  clearTimeout(hunTime);
 		  hunTime = setTimeout(hunger, 1200000);
 		  msg.channel.send(`*ням-ням*`);
+		  if (msg.author.pcoins === undefined) {
+			  msg.author.pcoins = 50;
+		  } else { 
+			  msg.author.pcoins += 50;
+		  }
+		  getdb();
 		  var feeder = msg.author;
 		  msg.channel.send(`Спасибо тебе, ${feeder}, мой желудок был полностью пуст!`);
 	  }
@@ -91,12 +151,24 @@ client.on('message', msg => {
 		  clearTimeout(hunTime);
 		  hunTime = setTimeout(hunger, 1200000);
 		  msg.channel.send(`*ням-ням*`);
+		  if (msg.author.pcoins === undefined) {
+			  msg.author.pcoins = 50;
+		  } else { 
+			  msg.author.pcoins += 50;
+		  }
+		  getdb();
 		  msg.channel.send(`Я начинаю наедаться.`);
 	  }
 	  if (feed === 3) {
 		  clearTimeout(hunTime);
 		  hunTime = setTimeout(hunger, 1200000);
 		  msg.channel.send(`*ням-ням*`);
+		  if (msg.author.pcoins === undefined) {
+			  msg.author.pcoins = 50;
+		  } else { 
+			  msg.author.pcoins += 50;
+		  }
+		  getdb();
 		  msg.channel.send(`Всё! Мой желудок забит дополна!`);
 	  }
 	  if (feed === 4) {
@@ -117,12 +189,16 @@ client.on('message', msg => {
 		  }
 		  feed = 0;
 	  }
+	  } else {
+		  msg.reply(`Сори, но я не хочу есть еду от облеванного.`);
+	  }
+	  }
   }
 });
 
 client.on('message', msg => {
   if (msg.content === `!patch`) {
-	  msg.channel.send(`Последний патчноут:\n-Добавлены писос коины.\n-Новые команды !balance и !daily.`)
+	  msg.channel.send(`Последний патчноут:\n-Добавлены писос коины.\n-Новая комнда !balance позволяющая чекать количество писос коинов.\n-Новая команда !daily позволяющая получать писос коины каждый денью\n-Новая команда !gamble позволяющая играть на писос коины.\n-За писос коины можно помыться (1000 писос коинов), тем самым избавиться от роли облеванного.\n-За писос коины можно заставить Кота Писоса облевать выбранного участника сервера(3000 писос коинов).\n-Теперь нельзя кормить Кота Писоса имея роль облеванного.\n-За кормежку Кота Писоса будут начисляться писос коины.\n-Исправлен баг при котором можно было кормить Кота Писоса в его лс.`)
   }
 });
 
