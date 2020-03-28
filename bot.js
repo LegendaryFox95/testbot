@@ -309,7 +309,7 @@ client.on('message', msg => {
 					idmentions = 1;
 				}
 			}
-			if (msg.everyone = 0) {
+			if (msg.everyone === 0) {
 			if (idmentions != 1) {
 				if (msg.author.tag != "Девушка Фокса#4807") {
 				    if (channeles) {
