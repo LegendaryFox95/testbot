@@ -283,15 +283,21 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
-  if (msg.content.endsWith('нет')) {
+  if (msg.content.toLowerCase().endsWith('нет') || msg.content.toLowerCase().endsWith('нeт') || msg.content.toLowerCase().endsWith('net') || msg.content.toLowerCase().endsWith('nеt') || msg.content.toLowerCase().endsWith('нет.') || msg.content.toLowerCase().endsWith('нeт.') || msg.content.toLowerCase().endsWith('net.') || msg.content.toLowerCase().endsWith('nеt.')) {
     msg.channel.send(`пидора ответ`);
+	  if (msg.content.toLowerCase().endsWith('нeт') || msg.content.toLowerCase().endsWith('net') || msg.content.toLowerCase().endsWith('nеt') || msg.content.toLowerCase().endsWith('нет.') || msg.content.toLowerCase().endsWith('нeт.') || msg.content.toLowerCase().endsWith('net.') || msg.content.toLowerCase().endsWith('nеt.')) {
+		  msg.channel.send(`https://cdn.discordapp.com/attachments/675995373017235456/708979446530441256/23.png`);
+	  }
   }
 });
 
 client.on('message', msg => {
-  if (msg.content.endsWith('да')) {
+  if (msg.content.toLowerCase().endsWith('да') || msg.content.toLowerCase().endsWith('дa') || msg.content.toLowerCase().endsWith('da') || msg.content.toLowerCase().endsWith('dа') || msg.content.toLowerCase().endsWith('да.') || msg.content.toLowerCase().endsWith('дa.') || msg.content.toLowerCase().endsWith('da.') || msg.content.toLowerCase().endsWith('dа.')) {
 	if (msg.author != client.user) {
 		msg.channel.send(`пизда`);
+		if (msg.content.toLowerCase().endsWith('дa') || msg.content.toLowerCase().endsWith('da') || msg.content.toLowerCase().endsWith('dа') || msg.content.toLowerCase().endsWith('да.') || msg.content.toLowerCase().endsWith('дa.') || msg.content.toLowerCase().endsWith('da.') || msg.content.toLowerCase().endsWith('dа.')) {
+			msg.channel.send(`https://cdn.discordapp.com/attachments/675995373017235456/708979446530441256/23.png`);
+		}
 	}
   }
 });
