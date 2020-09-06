@@ -31,7 +31,10 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	postgres.query('SELECT PersondID FROM Persons;', (err, res) => {
+	postgres.query("INSERT INTO Persons (PersonID) VALUES ('1234567890');", (err) => {
+		if (err) throw err;
+	});
+	postgres.query('SELECT persons.personid FROM persons;', (err, res) => {
 		if (err) throw err;
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
