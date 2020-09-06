@@ -28,8 +28,8 @@ client.once('ready', () => {
 		connectionString: process.env.DATABASE_URL,
 		ssl: {
 		  rejectUnauthorized: false,
-		},
-	);
+		});
+	}
 });
 
 client.on('message', msg => {
