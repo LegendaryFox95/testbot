@@ -38,12 +38,12 @@ client.on('message', msg => {
 		postgres.query('SELECT  count.n FROM count;', (err, res) => {
 			if (err) throw err;
 			counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
+			counting += 1;
 		});
-		counting += 1;
 		postgres.query(`UPDATE count SET n=${counting}`, (err, res) => {
 			if (err) throw err;
+			msg.channel.send(counting);
 		});
-		msg.channel.send(counting);
 	}
 });
 
