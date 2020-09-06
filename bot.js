@@ -31,9 +31,6 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	postgres.query('CREATE TABLE ab (a int, b int)', (err) => {
-		if (err) throw err;
-	});
 	postgres.query('INSERT INTO ab (a, b) VALUES (12, 14)', (err) => {
 		if (err) throw err;
 	});
