@@ -31,9 +31,12 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	postgres.query('SELECT  ab.a FROM ab WHERE a=12;', (err, res) => {
+	postgres.query('INSERT INTO ab (a, b) VALUES (146, 1434)', (err) => {
 		if (err) throw err;
-		client.channels.find(ch => ch.id === `744277455078162525`).send(res);
+	});
+	postgres.query('SELECT  ab.b FROM ab WHERE a=12;', (err, res) => {
+		if (err) throw err;
+		client.channels.find(ch => ch.id === `744277455078162525`).send(JSON.stringify(res));
 	});
 });
 
