@@ -31,9 +31,6 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	postgres.query('CREATE TABLE Persons (PersonID int);', (err) => {
-		if (err) throw err;
-	});
 	postgres.query('INSERT INTO Persons (PersonID) VALUES (`1234567890`);', (err) => {
 		if (err) throw err;
 	});
