@@ -29,19 +29,16 @@ client.once('ready', () => {
 		ssl: {
 		  rejectUnauthorized: false,
 		},
-	  },
 	);
-	postgres.connect();
 });
 
 client.on('message', msg => {
 	if (msg.content === `!count`) {
-		msg.channel.send("123");
+		postgres.connect();
 		postgres.query('SELECT  count.n FROM count;', (err, res) => {
 			if (err) throw err;
 			counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
 		});
-		msg.channel.send("123");
 		msg.channel.send(counting);
 		counting += 1;
 		postgres.query('UPDATE count SET n=counting', (err, res) => {
