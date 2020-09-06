@@ -42,8 +42,8 @@ client.on('message', msg => {
 		counting += 1;
 		postgres.query(`UPDATE count SET n=${counting}`, (err, res) => {
 			if (err) throw err;
-			msg.channel.send(counting);
 		});
+		msg.channel.send(counting);
 	}
 });
 
