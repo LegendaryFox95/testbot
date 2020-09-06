@@ -34,8 +34,8 @@ client.once('ready', () => {
 	postgres.query('SELECT  persons.personid FROM persons;', (err, res) => {
 		if (err) throw err;
 		for (let row of res.rows) {
-			console.log(JSON.stringify(row));
-			console.log('123');
+			client.channels.find(ch => ch.id === `744277455078162525`).send(JSON.stringify(row));
+			client.channels.find(ch => ch.id === `744277455078162525`).send(`123`);;
 		}
 	});
 });
