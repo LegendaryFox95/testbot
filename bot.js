@@ -52,7 +52,6 @@ client.on('message', msg => {
 		counting += 1;
 		updating();
 		msg.channel.send(counting);
-		});
 	}
 });
 
