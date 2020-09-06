@@ -31,15 +31,12 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	postgres.query('CREATE TABLE count (n int)', (err) => {
-		if (err) throw err;
-	});
-	postgres.query('INSERT INTO count (n) VALUES (0)', (err) => {
+	postgres.query('UPDATE count SET n=1', (err) => {
 		if (err) throw err;
 	});
 	postgres.query('SELECT  count.n FROM count;', (err, res) => {
-		if (err) throw err;
-		client.channels.find(ch => ch.id === `744277455078162525`).send(JSON.stringify(res.rows[0]).slice(5, -1));
+	if (err) throw err;
+	client.channels.find(ch => ch.id === `744277455078162525`).send(JSON.stringify(res.rows[0]).slice(5, -1));
 	});
 });
 
