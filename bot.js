@@ -31,7 +31,7 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	postgres.query('UPDATE count SET n=1', (err) => {
+	postgres.query('UPDATE count SET n=0', (err) => {
 		if (err) throw err;
 	});
 	postgres.query('SELECT  count.n FROM count;', (err, res) => {
