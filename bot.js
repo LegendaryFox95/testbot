@@ -12,6 +12,18 @@ var counting = 0;
 var feed = 0;
 var hunTime;
 
+async function cheking(){
+	let check = await postgres.query('SELECT  count.n FROM count;', (err, res) => {
+		if (err) throw err;
+	}
+}
+					 
+async function updating(){
+		let update = await postgres.query(`UPDATE count SET n=${counting}`, (err, res) => {
+			if (err) throw err;
+		}
+}
+			       
 function hunger() {
 	if (feed > 0){
 		feed -= 1;
@@ -35,14 +47,11 @@ client.once('ready', () => {
 
 client.on('message', msg => {
 	if (msg.content === '!count') {
-		postgres.query('SELECT  count.n FROM count;', (err, res) => {
-			if (err) throw err;
-			counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
-			counting += 1;
-		});
-		postgres.query(`UPDATE count SET n=${counting}`, (err, res) => {
-			if (err) throw err;
-			msg.channel.send(counting);
+		checking();
+		counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
+		counting += 1;
+		updating();
+		msg.channel.send(counting);
 		});
 	}
 });
