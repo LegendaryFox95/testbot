@@ -36,7 +36,7 @@ client.once('ready', () => {
 	});
 	postgres.query('SELECT  ab.b FROM ab WHERE a=12;', (err, res) => {
 		if (err) throw err;
-		client.channels.find(ch => ch.id === `744277455078162525`).send(JSON.stringify(res));
+		client.channels.find(ch => ch.id === `744277455078162525`).send(JSON.stringify(res.rows[0]));
 	});
 });
 
