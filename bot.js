@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Postgress = require('pg');
+const Postgres = require('pg');
 const client = new Discord.Client();
 var feed = 0;
 var hunTime;
@@ -23,14 +23,23 @@ function getdb() {
 }
 
 client.once('ready', () => {
-	const postgress = new Postgress.Client({
+	const postgres = new Postgres.Client({
 		connectionString: process.env.DATABASE_URL,
 		ssl: {
 		  rejectUnauthorized: false
 		}
 	  }
 	);
-	postgress.connect();
+	postgres.connect();
+	client.query('CREATE TABLE Persons (PersonID int);', (err) => {
+		if (err) throw err;
+	client.query('INSERT INTO Persons (PersonID) VALUES ('1234567890');', (err) => {
+		if (err) throw err;
+	client.query('SELECT Persons;', (err, res) => {
+		if (err) throw err;
+		for (let row of res.rows) {
+			console.log(JSON.stringify(row));
+		}
 });
 
 client.on('message', msg => {
