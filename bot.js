@@ -31,12 +31,6 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	postgres.query('INSERT INTO ab (a, b) VALUES (12, 14)', (err) => {
-		if (err) throw err;
-	});
-	postgres.query('INSERT INTO ab (a, b) VALUES (163, 34)', (err) => {
-		if (err) throw err;
-	});
 	postgres.query('SELECT  ab.a FROM ab WHERE a=12;', (err, res) => {
 		if (err) throw err;
 		client.channels.find(ch => ch.id === `744277455078162525`).send(res);
