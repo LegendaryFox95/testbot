@@ -22,7 +22,7 @@ function getdb() {
 	}
 }
 
-client.once('ready', () => {
+dclient.once('ready', () => {
 	const postgress = new Postgress.Client({
 		connectionString: process.env.DATABASE_URL,
 		ssl: {
