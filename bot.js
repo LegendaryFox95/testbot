@@ -7,6 +7,7 @@ const postgres = new Postgres.Client({
 		rejectUnauthorized: false,
 	},
 });
+postgres.connect();
 var counting = 0;
 var feed = 0;
 var hunTime;
@@ -34,15 +35,14 @@ client.once('ready', () => {
 
 client.on('message', msg => {
 	if (msg.content === '!count') {
-		postgres.connect();
 		postgres.query('SELECT  count.n FROM count;', (err, res) => {
 			if (err) throw err;
 			counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
 		});
-		msg.channel.send(counting);
 		counting += 1;
 		postgres.query(`UPDATE count SET n=${counting}`, (err, res) => {
 			if (err) throw err;
+			msg.channel.send(counting);
 		});
 	}
 });
