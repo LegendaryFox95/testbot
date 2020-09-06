@@ -15,12 +15,14 @@ var hunTime;
 async function cheking(){
 	let check = await postgres.query('SELECT  count.n FROM count;', (err, res) => {
 		if (err) throw err;
+		return res;
 	});
 }
 					 
 async function updating(){
-		let update = await postgres.query(`UPDATE count SET n=${counting}`, (err, res) => {
+		let update = await postgres.query(`UPDATE count SET n=${counting}`, (err) => {
 			if (err) throw err;
+			return;
 		});
 }
 			       
@@ -47,8 +49,7 @@ client.once('ready', () => {
 
 client.on('message', msg => {
 	if (msg.content === '!count') {
-		checking();
-		counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
+		counting = parseInt(JSON.stringify(checking().rows[0]).slice(5, -1));
 		counting += 1;
 		updating();
 		msg.channel.send(counting);
