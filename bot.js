@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
-const { Postgress } = require('pg');
-const client = new Discord.Client();
+const Postgress = require('pg');
+const dclient = new Discord.Client();
 var feed = 0;
 var hunTime;
 
@@ -23,7 +23,7 @@ function getdb() {
 }
 
 client.once('ready', () => {
-	const postgress = new Postgress({
+	const postgress = new Postgress.Client({
 		connectionString: process.env.DATABASE_URL,
 		ssl: {
 		  rejectUnauthorized: false
@@ -344,4 +344,4 @@ client.on('message', msg => {
 }
 });
 
-client.login(process.env.BOT_TOKEN);
+dclient.login(process.env.BOT_TOKEN);
