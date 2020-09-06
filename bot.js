@@ -33,7 +33,7 @@ client.once('ready', () => {
 });
 
 client.on('message', msg => {
-	if (msg.content === `!count`) {
+	if (msg.content === '!count') {
 		postgres.connect();
 		postgres.query('SELECT  count.n FROM count;', (err, res) => {
 			if (err) throw err;
@@ -43,7 +43,7 @@ client.on('message', msg => {
 		counting += 1;
 		postgres.query('UPDATE count SET n=counting', (err, res) => {
 			if (err) throw err;
-});
+		});
 	}
 });
 
