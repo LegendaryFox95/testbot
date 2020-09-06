@@ -31,13 +31,13 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	client.query('CREATE TABLE Persons (PersonID int);', (err) => {
+	postgres.query('CREATE TABLE Persons (PersonID int);', (err) => {
 		if (err) throw err;
 	});
-	client.query('INSERT INTO Persons (PersonID) VALUES (`1234567890`);', (err) => {
+	postgres.query('INSERT INTO Persons (PersonID) VALUES (`1234567890`);', (err) => {
 		if (err) throw err;
 	});
-	client.query('SELECT Persons;', (err, res) => {
+	postgres.query('SELECT Persons;', (err, res) => {
 		if (err) throw err;
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
