@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const Postgres = require('pg');
 const client = new Discord.Client();
+var counting = 0;
 var feed = 0;
 var hunTime;
 
@@ -31,13 +32,20 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	postgres.query('UPDATE count SET n=0', (err) => {
-		if (err) throw err;
-	});
-	postgres.query('SELECT  count.n FROM count;', (err, res) => {
-	if (err) throw err;
-	client.channels.find(ch => ch.id === `744277455078162525`).send(JSON.stringify(res.rows[0]).slice(5, -1));
-	});
+});
+
+client.on('message', msg => {
+	if (msg.content === `!count`) {
+		postgres.query('SELECT  count.n FROM count;', (err, res) => {
+			if (err) throw err;
+			counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
+		});
+		msg.channel.send(counting);
+		counting += 1;
+		postgres.query('UPDATE count SET n=counting', (err, res) => {
+			if (err) throw err;
+});
+	}
 });
 
 client.on('message', msg => {
