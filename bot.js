@@ -31,7 +31,7 @@ client.once('ready', () => {
 	  },
 	);
 	postgres.connect();
-	postgres.query('SELECT Persons;', (err, res) => {
+	postgres.query('SELECT PersondID FROM Persons;', (err, res) => {
 		if (err) throw err;
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
