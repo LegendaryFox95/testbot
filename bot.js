@@ -9,39 +9,19 @@ const postgres = new Postgres.Client({
 });
 postgres.connect();
 var counting = 0;
-var feed = 0;
-var hunTime;
 
-async function cheking(){
+async function checking() {
 	let check = await postgres.query('SELECT  count.n FROM count;', (err, res) => {
 		if (err) throw err;
 		return res;
 	});
 }
-					 
-async function updating(){
-		let update = await postgres.query(`UPDATE count SET n=${counting}`, (err) => {
-			if (err) throw err;
-			return;
-		});
-}
-			       
-function hunger() {
-	if (feed > 0){
-		feed -= 1;
-		if (feed > 0) {
-			clearTimeout(hunTime);
-			hunTime = setTimeout(hunger, 1200000);
-		}
-	}
-}
 
-function getdb() {
-	var na = client.users.array().filter(us => us.pcoins != undefined);
-	client.channels.find(ch => ch.id === `693067909014224910`).send(`s`);
-	for (let i = 0; i < na.length; i++) {
-	client.channels.find(ch => ch.id === `693067909014224910`).send(`${na[i].id} ${na[i].pcoins} ${na[i].lastdaily}`);
-	}
+async function updating() {
+	let update = await postgres.query(`UPDATE count SET n=${counting}`, (err) => {
+		if (err) throw err;
+		return;
+	});
 }
 
 client.once('ready', () => {
@@ -49,7 +29,8 @@ client.once('ready', () => {
 
 client.on('message', msg => {
 	if (msg.content === '!count') {
-		counting = parseInt(JSON.stringify(checking().rows[0]).slice(5, -1));
+		var res = checking();
+		counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
 		counting += 1;
 		updating();
 		msg.channel.send(counting);
