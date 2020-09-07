@@ -13,7 +13,6 @@ var counting = 0;
 client.once('ready', () => {
 	client.user.setStatus(`Suck my pisos pls`);
 });
-});
 
 client.on('message', msg => {
 	if (msg.content === '!count') {
