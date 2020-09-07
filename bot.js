@@ -11,7 +11,7 @@ postgres.connect();
 var counting = 0;
 
 client.once('ready', () => {
-	client.user.setStatus('idle');
+	client.user.setActivity('Suck my pisos pls', { type: 'PLAYING' })
 });
 
 client.on('message', msg => {
