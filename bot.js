@@ -10,30 +10,18 @@ const postgres = new Postgres.Client({
 postgres.connect();
 var counting = 0;
 
-async function checking() {
-	let check = await postgres.query('SELECT  count.n FROM count;', (err, res) => {
-		if (err) throw err;
-		return res;
-	});
-}
-
-async function updating() {
-	let update = await postgres.query(`UPDATE count SET n=${counting}`, (err) => {
-		if (err) throw err;
-		return;
-	});
-}
-
 client.once('ready', () => {
 });
 
 client.on('message', msg => {
 	if (msg.content === '!count') {
-		var res = checking();
-		counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
-		counting += 1;
-		updating();
-		msg.channel.send(counting);
+		async () => {
+			const res = await postgres.query('SELECT  count.n FROM count;');
+			counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
+			counting += 1;
+			await postgres.query(`UPDATE count SET n=${counting}`);
+			msg.channel.send(counting);
+		}
 	}
 });
 
