@@ -16,14 +16,14 @@ client.once('ready', () => {
 client.on('message', msg => {
 	if (msg.content === '!count') {
 		msg.channel.send("123");
-		async () => {
+		(async () => {
 			msg.channel.send("123");
 			const res = await postgres.query('SELECT  count.n FROM count;');
 			counting = parseInt(JSON.stringify(res.rows[0]).slice(5, -1));
 			counting += 1;
 			await postgres.query(`UPDATE count SET n=${counting}`);
 			msg.channel.send(counting);
-		}
+		})();
 	}
 });
 
