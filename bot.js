@@ -218,6 +218,12 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
 });
 
 client.on('message', msg => {
+	if (msg.content === `!pet`) {
+		msg.channel.send(`<a:blazhenstvo:755333362364973166>`);
+	}
+});
+
+client.on('message', msg => {
 	if (msg.content === `!blink`) {
 		msg.channel.send(`<a:mfwgirldoesntsuckmypeesos:591234476953174037>`);
 	}
