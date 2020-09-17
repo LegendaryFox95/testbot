@@ -218,8 +218,8 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
 });
 
 client.on('message', msg => {
-	if (msg.content === `!pet`) {
-		var emoj = msg.channel.guild.emojis.cache.find(emp => emp.id === '755333362364973166')
+	if (msg.content === '!pet') {
+		var emoj = msg.channel.guild.emojis.cache.find(emoji => emoji.name === 'blazhenstvo');
 		msg.channel.send(`${emoj}`);
 	}
 });
