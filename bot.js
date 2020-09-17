@@ -220,7 +220,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
 client.on('message', msg => {
 	if (msg.content === `!pet`) {
 		var emoj = msg.channel.guild.emojis.cache.find(emp => emp.id === '755333362364973166')
-		msg.channel.send(`<a:blazhenstvo:755333362364973166>`);
+		msg.channel.send(`${emoj}`);
 	}
 });
 
