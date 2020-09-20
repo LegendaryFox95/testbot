@@ -219,7 +219,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
 
 client.on('message', msg => {
 	if (msg.content === '!pet') {
-		var emoj = msg.channel.guild.emojis.cache.find(emoji => emoji.name === 'blazhenstvo');
+		var emoj = msg.channel.guild.emojis.cache.find(emoji => emoji.name === 'patsosresting');
 		msg.channel.send(`${emoj}`);
 	}
 });
